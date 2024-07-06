@@ -4,6 +4,9 @@ const DatasetPage = () => {
   return (
     <>
       <Heading>Datasets</Heading>
+      <Text>
+        Datasets count : <strong>4</strong>
+      </Text>
       <Box className="flex flex-col gap-4 w-96 mx-auto mt-6">
         {/* Each data */}
         <Box className="flex justify-between items-center">
