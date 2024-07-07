@@ -1,4 +1,4 @@
-import { Stack, Select, Text, Button, Heading, Box } from "@chakra-ui/react";
+import { Select, Text, Button, Heading, Box } from "@chakra-ui/react";
 
 import { Chart as ChartJS } from "chart.js/auto";
 import { Bar, Line } from "react-chartjs-2";
