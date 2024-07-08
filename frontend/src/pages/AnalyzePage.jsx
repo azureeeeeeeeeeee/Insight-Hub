@@ -1,7 +1,7 @@
 import { Select, Text, Button, Heading, Box } from "@chakra-ui/react";
 
 import { Chart as ChartJS } from "chart.js/auto";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar, Line, Doughnut, Scatter } from "react-chartjs-2";
 
 const AnalyzePage = () => {
   return (
@@ -40,7 +40,7 @@ const AnalyzePage = () => {
         </Box>
 
         <Box className="text-center mt-4">
-          <Heading size="lg">Line Plot</Heading>
+          <Heading size="lg">Line Chart</Heading>
           <Line
             data={{
               labels: ["Jan", "Apr", "Mar", "May", "Jun", "Jul", "Aug"],
@@ -52,6 +52,46 @@ const AnalyzePage = () => {
                 {
                   label: "ETH",
                   data: [20, 13, 12, 9, 11, 9, 10, 13],
+                },
+              ],
+            }}
+          />
+        </Box>
+
+        <Box className="text-center mt-4">
+          <Heading size="lg">Dougnut Chart</Heading>
+          <Doughnut
+            data={{
+              labels: ["RED", "BLUE", "YELLOW"],
+              datasets: [
+                {
+                  label: "Votes",
+                  data: [13, 12, 11],
+                },
+              ],
+            }}
+          />
+        </Box>
+
+        <Box className="text-center mt-4">
+          <Heading size="lg">Line Chart</Heading>
+          <Scatter
+            data={{
+              datasets: [
+                {
+                  label: "Spending and income",
+                  data: [
+                    { x: 1, y: 1 },
+                    { x: 2, y: 4 },
+                    { x: 3, y: 9 },
+                    { x: 4, y: 16 },
+                    { x: 5, y: 25 },
+                    { x: 6, y: 36 },
+                    { x: 7, y: 49 },
+                    { x: 8, y: 64 },
+                    { x: 9, y: 81 },
+                    { x: 10, y: 100 },
+                  ],
                 },
               ],
             }}
