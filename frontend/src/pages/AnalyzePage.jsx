@@ -20,7 +20,7 @@ const AnalyzePage = () => {
           </Box>
         </Box>
 
-        <Box className="text-center mt-4" height="350px">
+        <Box className="text-center mt-4" height="300px">
           <Heading size="lg" className="mx-auto">
             Line Chart
           </Heading>
@@ -116,7 +116,7 @@ const AnalyzePage = () => {
           <Heading className="mx-auto" size="lg">
             <Center>Descriptive Statiscics</Center>
           </Heading>
-          <Box className="ml-6">
+          <Box className="flex flex-col justify-center align-center">
             <Text>Select the column</Text>
             <Box className="flex gap-4">
               <Select variant="outline" width="16rem">
