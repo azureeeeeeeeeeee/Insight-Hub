@@ -10,6 +10,7 @@ import MainLayout from "./layouts/MainLayout";
 import DashboardPage from "./pages/DashboardPage";
 import DatasetPage from "./pages/DatasetPage";
 import AnalyzePage from "./pages/AnalyzePage";
+import LoginPage from "./pages/LoginPage";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const App = () => {
         <Route index element={<DashboardPage />} />
         <Route path="/datasets" element={<DatasetPage />} />
         <Route path="/analyze" element={<AnalyzePage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Route>
     )
   );
