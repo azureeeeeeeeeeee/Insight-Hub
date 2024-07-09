@@ -5,7 +5,9 @@ import {
   Button,
   Heading,
   Box,
+  Text,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const LoginPage = () => {
@@ -30,6 +32,12 @@ const LoginPage = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
+        <Text>
+          Do not have an account ?
+          <Link to="/register" className="text-sky-500">
+            register here
+          </Link>
+        </Text>
         <Button type="submit" colorScheme="blue">
           Login
         </Button>
