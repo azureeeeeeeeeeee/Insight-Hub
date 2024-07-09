@@ -1,6 +1,6 @@
-import { Select, Text, Button, Heading, Box } from "@chakra-ui/react";
+import { Select, Text, Button, Heading, Box, Center } from "@chakra-ui/react";
 
-import { Chart as ChartJS } from "chart.js/auto";
+import { Chart } from "chart.js/auto";
 import { Bar, Line, Doughnut, Scatter } from "react-chartjs-2";
 
 const AnalyzePage = () => {
@@ -20,28 +20,14 @@ const AnalyzePage = () => {
           </Box>
         </Box>
 
-        <Box className="text-center mt-4">
-          <Heading size="lg">Bar Plot</Heading>
-          <Bar
-            data={{
-              labels: ["Tarakan", "Balikpapan", "Jakarta"],
-              datasets: [
-                {
-                  label: "Male",
-                  data: [100, 300, 400],
-                },
-                {
-                  label: "Female",
-                  data: [150, 190, 310],
-                },
-              ],
-            }}
-          />
-        </Box>
-
-        <Box className="text-center mt-4">
-          <Heading size="lg">Line Chart</Heading>
+        <Box className="text-center mt-4" height="350px">
+          <Heading size="lg" className="mx-auto">
+            Line Chart
+          </Heading>
           <Line
+            id="line-chart-1"
+            key="line-chart-1"
+            className="mx-auto"
             data={{
               labels: ["Jan", "Apr", "Mar", "May", "Jun", "Jul", "Aug"],
               datasets: [
@@ -58,24 +44,52 @@ const AnalyzePage = () => {
           />
         </Box>
 
-        <Box className="text-center mt-4">
-          <Heading size="lg">Dougnut Chart</Heading>
-          <Doughnut
-            data={{
-              labels: ["RED", "BLUE", "YELLOW"],
-              datasets: [
-                {
-                  label: "Votes",
-                  data: [13, 12, 11],
-                },
-              ],
-            }}
-          />
+        <Box className="flex justify-around mt-14">
+          <Box className="text-center mt-4">
+            <Heading size="lg">Bar Plot</Heading>
+            <Bar
+              id="bar-chart-1"
+              key="bar-chart-1"
+              data={{
+                labels: ["Tarakan", "Balikpapan", "Jakarta"],
+                datasets: [
+                  {
+                    label: "Male",
+                    data: [100, 300, 400],
+                  },
+                  {
+                    label: "Female",
+                    data: [150, 190, 310],
+                  },
+                ],
+              }}
+            />
+          </Box>
+
+          <Box className="text-center mt-4">
+            <Heading size="lg">Dougnut Chart</Heading>
+            <Doughnut
+              id="doughnut-chart-1"
+              key="doughnut-chart-1"
+              data={{
+                labels: ["RED", "BLUE", "YELLOW"],
+                datasets: [
+                  {
+                    label: "Votes",
+                    data: [13, 12, 11],
+                  },
+                ],
+              }}
+            />
+          </Box>
         </Box>
 
-        <Box className="text-center mt-4">
+        <Box className="text-center mt-4" height="350px">
           <Heading size="lg">Line Chart</Heading>
           <Scatter
+            id="scatter-chart-1"
+            key="scatter-chart-1"
+            className="mx-auto"
             data={{
               datasets: [
                 {
@@ -96,6 +110,33 @@ const AnalyzePage = () => {
               ],
             }}
           />
+        </Box>
+
+        <Box className="mt-14" height="350px">
+          <Heading className="mx-auto" size="lg">
+            <Center>Descriptive Statiscics</Center>
+          </Heading>
+          <Box className="ml-6">
+            <Text>Select the column</Text>
+            <Box className="flex gap-4">
+              <Select variant="outline" width="16rem">
+                <option value="">column 1</option>
+                <option value="">column 2</option>
+                <option value="">column 3</option>
+              </Select>
+              <Button colorScheme="blue">Show</Button>
+            </Box>
+
+            <Box className="mt-6">
+              <Heading size="base">
+                Descriptive Statistics of "column 1"
+              </Heading>
+              <Text>Median : 30</Text>
+              <Text>Mean : 30</Text>
+              <Text>Standard Deviation : 30</Text>
+              <Text>Mode : 30</Text>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </>
