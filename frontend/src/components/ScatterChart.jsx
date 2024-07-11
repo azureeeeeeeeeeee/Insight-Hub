@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Center, Select, Text, Button } from "@chakra-ui/react";
 import { Chart } from "chart.js/auto";
 import { Scatter } from "react-chartjs-2";
 
@@ -6,6 +6,23 @@ const ScatterChart = () => {
   return (
     <Box className="text-center mt-4" height="350px">
       <Heading size="lg">Scatter Plot</Heading>
+      <Center>
+        <Box className="flex items-center gap-4">
+          <Text>Correlation of </Text>
+          <Select variant="outline" width="10rem">
+            <option value="">column 1</option>
+            <option value="">column 2</option>
+            <option value="">column 3</option>
+          </Select>
+          <Text>and </Text>
+          <Select variant="outline" width="10rem">
+            <option value="">column 1</option>
+            <option value="">column 2</option>
+            <option value="">column 3</option>
+          </Select>
+          <Button colorScheme="blue">Show</Button>
+        </Box>
+      </Center>
       <Scatter
         className="mx-auto"
         data={{
