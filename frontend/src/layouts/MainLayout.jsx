@@ -2,6 +2,8 @@ import { Box } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HamburgerMenu from "../components/HamburgerMenu";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainLayout = () => {
   return (
@@ -13,6 +15,7 @@ const MainLayout = () => {
         </Box>
       </Box>
       <Outlet />
+      <ToastContainer />
     </>
   );
 };
