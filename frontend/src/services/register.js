@@ -1,10 +1,12 @@
-import axios from "axios";
+import login from "./login";
+import api from "./api";
 
 const userRegister = async (data) => {
   if (data.password !== data.password2) {
     throw new Error("Password do not match");
   }
-  await axios.post("http://127.0.0.1:8000/api/auth/register/", data);
+  await api.post("/auth/register/", data);
+  await login({ username: data.username, password: data.password });
 };
 
 export default userRegister;
