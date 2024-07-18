@@ -7,7 +7,7 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import login from "../services/login";
 import { toast } from "react-toastify";
@@ -19,15 +19,22 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await login({ username, password });
       toast.success("Login Sucessful");
+      setLoggedIn(true);
     } catch (error) {
       toast.error(error.message);
     }
   };
+
+  if (loggedIn) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Box borderRadius="l" className="flex flex-col gap-4 w-96 mx-auto my-6">
