@@ -6,8 +6,8 @@ const refresh = async () => {
     const res = await api.post("/auth/token/refresh", {
       refresh: localStorage.getItem("REFRESH_TOKEN"),
     });
-    localStorage.setItem("ACCESS_TOKEN", res.access);
-    return res.access;
+    localStorage.setItem("ACCESS_TOKEN", res.data.access);
+    return res.data.access;
   } catch (error) {
     console.error(error);
   }
@@ -15,7 +15,14 @@ const refresh = async () => {
 
 const getToken = async () => {
   const token = localStorage.getItem("ACCESS_TOKEN");
-  const decoded = jwtDecode(token);
+  let decoded;
+  try {
+    decoded = jwtDecode(token);
+  } catch (error) {
+    console.error("Invalid token : ", error);
+    return await refresh();
+  }
+
   if (Date.now() / 1000 > decoded.exp) {
     return await refresh();
   }

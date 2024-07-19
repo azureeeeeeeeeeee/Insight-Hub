@@ -1,10 +1,22 @@
 import { Heading, Text, Box, Button, Input } from "@chakra-ui/react";
 import addData from "../services/addData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import getAllData from "../services/getAllData";
+
+import DataCard from "../components/DataCard";
 
 const DatasetPage = () => {
   const [data, setData] = useState(null);
+  const [allData, setAllData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setAllData(await getAllData());
+    };
+
+    fetchData();
+  }, []);
 
   const handleAddBook = async (e) => {
     e.preventDefault();
@@ -15,6 +27,9 @@ const DatasetPage = () => {
     try {
       await addData(dataForm);
       toast.success("Data Added");
+
+      // Refresh dataset once the new data is uploaded
+      setAllData(await getAllData());
     } catch (err) {
       console.error(err);
       toast.error(err.message);
@@ -25,45 +40,13 @@ const DatasetPage = () => {
     <>
       <Heading>Datasets</Heading>
       <Text>
-        Datasets count : <strong>4</strong>
+        Datasets count : <strong>{allData.length}</strong>
       </Text>
       <Box className="flex flex-col gap-4 w-96 mx-auto mt-6">
         {/* Each data */}
-        <Box className="flex justify-between items-center">
-          <Text className="text-xl">
-            <strong>data1.csv</strong> - 1 day ago
-          </Text>
-          <Button size={"xs"} className="text-base" colorScheme="red">
-            Delete
-          </Button>
-        </Box>
-
-        <Box className="flex justify-between items-center">
-          <Text className="text-xl">
-            <strong>data2.csv</strong> - 2 day ago
-          </Text>
-          <Button size={"xs"} className="text-base" colorScheme="red">
-            Delete
-          </Button>
-        </Box>
-
-        <Box className="flex justify-between items-center">
-          <Text className="text-xl">
-            <strong>data3.csv</strong> - 3 day ago
-          </Text>
-          <Button size={"xs"} className="text-base" colorScheme="red">
-            Delete
-          </Button>
-        </Box>
-
-        <Box className="flex justify-between items-center">
-          <Text className="text-xl">
-            <strong>data4.csv</strong> - 4 day ago
-          </Text>
-          <Button size={"xs"} className="text-base" colorScheme="red">
-            Delete
-          </Button>
-        </Box>
+        {allData.map((data) => (
+          <DataCard key={data.id} data={data} />
+        ))}
       </Box>
 
       <form

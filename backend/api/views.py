@@ -20,14 +20,12 @@ def getRoutes(request):
 @permission_classes([IsAuthenticated])
 def AddData(request):
     data = request.data
-    print(f"\n\n{data}\n\n")
     data['user'] = request.user.id
     data['data'] = request.FILES.get('data')
     serializer = DataSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         return Response({'message': 'Data added'}, status=status.HTTP_200_OK)
-    print(f'\n\n{serializer.errors}\n\n')
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
@@ -49,4 +47,17 @@ def GetData(request, pk):
     
     serializer = DataSerializer(data, many=False)
     return Response({'data': serializer.data}, status=status.HTTP_200_OK)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def DeleteData(request, pk):
+    data = Data.objects.filter(id=pk)
+
+    if data.user != request.user:
+        return Response({'message': 'what are you doing here ?'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+    data.delete()
+
+    return Response({'message': 'data deleted'}, status=status.HTTP_204_NO_CONTENT)
     
