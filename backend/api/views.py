@@ -52,7 +52,7 @@ def GetData(request, pk):
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def DeleteData(request, pk):
-    data = Data.objects.filter(id=pk)
+    data = Data.objects.get(id=pk)
 
     if data.user != request.user:
         return Response({'message': 'what are you doing here ?'}, status=status.HTTP_401_UNAUTHORIZED)

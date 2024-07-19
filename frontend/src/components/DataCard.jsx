@@ -1,12 +1,22 @@
 import { Text, Button, Box } from "@chakra-ui/react";
+import deleteData from "../services/deleteData";
 
 const DataCard = ({ data }) => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await deleteData(data.id);
+  };
   return (
     <Box className="flex justify-between items-center">
       <Text className="text-xl">
         <strong>{data.filename}</strong>
       </Text>
-      <Button size={"xs"} className="text-base" colorScheme="red">
+      <Button
+        onClick={handleDelete}
+        size={"xs"}
+        className="text-base"
+        colorScheme="red"
+      >
         Delete
       </Button>
     </Box>
