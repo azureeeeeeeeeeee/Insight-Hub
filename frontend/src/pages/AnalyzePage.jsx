@@ -1,11 +1,26 @@
-import { Select, Text, Button, Heading, Box, Center } from "@chakra-ui/react";
+import { Select, Text, Button, Heading, Box } from "@chakra-ui/react";
 import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
 import DoughnutChart from "../components/DoughnutChart";
 import ScatterChart from "../components/ScatterChart";
 import DescriptiveStats from "../components/DescriptiveStats";
+import { useState, useEffect } from "react";
+import getAllData from "../services/getAllData";
 
 const AnalyzePage = () => {
+  const [allData, setAllData] = useState([]);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchAllData = async () => {
+      setAllData(await getAllData());
+    };
+
+    fetchAllData();
+  }, []);
+
+  console.log(allData);
+
   return (
     <>
       <Heading className="mt-6">Data Analytics</Heading>
@@ -14,9 +29,11 @@ const AnalyzePage = () => {
           <Text>Select the data you want to analyze</Text>
           <Box className="flex gap-4">
             <Select variant="outline" width="24rem">
-              <option value="">data1.csv</option>
-              <option value="">data2.csv</option>
-              <option value="">data3.csv</option>
+              {allData.map((data) => (
+                <option key={data.id} value={data.id}>
+                  {data.filename}
+                </option>
+              ))}
             </Select>
             <Button colorScheme="blue">Analyze</Button>
           </Box>
