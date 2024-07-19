@@ -7,7 +7,7 @@ const refresh = async () => {
       refresh: localStorage.getItem("REFRESH_TOKEN"),
     });
     localStorage.setItem("ACCESS_TOKEN", res.access);
-    return res;
+    return res.access;
   } catch (error) {
     console.error(error);
   }
@@ -17,7 +17,7 @@ const getToken = async () => {
   const token = localStorage.getItem("ACCESS_TOKEN");
   const decoded = jwtDecode(token);
   if (Date.now() / 1000 > decoded.exp) {
-    await refresh();
+    return await refresh();
   }
   return token;
 };

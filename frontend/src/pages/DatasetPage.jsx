@@ -1,6 +1,26 @@
 import { Heading, Text, Box, Button, Input } from "@chakra-ui/react";
+import addData from "../services/addData";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const DatasetPage = () => {
+  const [data, setData] = useState(null);
+
+  const handleAddBook = async (e) => {
+    e.preventDefault();
+
+    const dataForm = new FormData();
+    dataForm.append("data", data);
+
+    try {
+      await addData(dataForm);
+      toast.success("Data Added");
+    } catch (err) {
+      console.error(err);
+      toast.error(err.message);
+    }
+  };
+
   return (
     <>
       <Heading>Datasets</Heading>
@@ -46,9 +66,18 @@ const DatasetPage = () => {
         </Box>
       </Box>
 
-      <form method="POST" className="w-96 mx-auto mt-16">
+      <form
+        onSubmit={handleAddBook}
+        method="POST"
+        className="w-96 mx-auto mt-16"
+      >
         <Heading size="base">Add new Data</Heading>
-        <Input className="my-4" type="file" />
+        <Input
+          className="my-4"
+          type="file"
+          accept=".csv, .xlsx"
+          onChange={(e) => setData(e.target.files[0])}
+        />
         <Button type="submit" colorScheme="blue">
           Add data
         </Button>

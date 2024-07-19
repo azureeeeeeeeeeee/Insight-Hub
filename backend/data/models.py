@@ -24,3 +24,6 @@ class Data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     data = models.FileField(upload_to='uploads/', validators=[validate_data])
     added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.data.name} - {self.user.username}'
