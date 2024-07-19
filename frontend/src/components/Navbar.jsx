@@ -1,6 +1,7 @@
 import { Avatar, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logout from "../services/logout";
 
 const Navbar = () => {
   return (
@@ -26,7 +27,7 @@ const Navbar = () => {
                 </MenuItem>
               </Link>
               <Link>
-                <MenuItem>
+                <MenuItem onClick={logout}>
                   <FaSignOutAlt className="mr-4" />
                   Logout
                 </MenuItem>
