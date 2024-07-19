@@ -5,6 +5,7 @@ const DataCard = ({ data }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     await deleteData(data.id);
+    window.location.reload();
   };
   return (
     <Box className="flex justify-between items-center">
