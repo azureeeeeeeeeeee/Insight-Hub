@@ -7,5 +7,7 @@ urlpatterns = [
     path('data/view/<str:pk>/', views.GetData, name='get-datas'),
     path('data/add/', views.AddData, name='add-data'),
 
+    path('data/process/dougnut/', views.DoughnutChart, name='doughnut-chart'),
+
     path('data/delete/<str:pk>/', views.DeleteData, name='add-data'),
 ]

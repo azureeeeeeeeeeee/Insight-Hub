@@ -67,3 +67,22 @@ def DeleteData(request, pk):
 
     return Response({'message': 'data deleted'}, status=status.HTTP_204_NO_CONTENT)
     
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def DoughnutChart(request):
+    data = request.data
+    col = data.get('column')
+    json_data = data.get('data')
+
+    try:
+        df = pd.read_json(json_data)
+    except Exception as e:
+        return Response({'message': f'Invalid JSON data: f{str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
+
+    final_df = df.groupby(col)[col].nunique()
+    json = final_df.to_json(orient='records')
+
+    return Response({'data':json}, status=status.HTTP_200_OK)
+
+    
