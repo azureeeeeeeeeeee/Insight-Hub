@@ -6,10 +6,12 @@ import ScatterChart from "../components/ScatterChart";
 import DescriptiveStats from "../components/DescriptiveStats";
 import { useState, useEffect } from "react";
 import getAllData from "../services/getAllData";
+import getData from "../services/getData";
 
 const AnalyzePage = () => {
   const [allData, setAllData] = useState([]);
   const [data, setData] = useState(null);
+  const [id, setId] = useState("");
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -19,7 +21,9 @@ const AnalyzePage = () => {
     fetchAllData();
   }, []);
 
-  console.log(allData);
+  const handleDataSubmit = async () => {
+    setData(await getData(id));
+  };
 
   return (
     <>
@@ -28,14 +32,20 @@ const AnalyzePage = () => {
         <Box>
           <Text>Select the data you want to analyze</Text>
           <Box className="flex gap-4">
-            <Select variant="outline" width="24rem">
+            <Select
+              variant="outline"
+              width="24rem"
+              onChange={(e) => setId(e.target.value)}
+            >
               {allData.map((data) => (
                 <option key={data.id} value={data.id}>
                   {data.filename}
                 </option>
               ))}
             </Select>
-            <Button colorScheme="blue">Analyze</Button>
+            <Button colorScheme="blue" onClick={handleDataSubmit}>
+              Analyze
+            </Button>
           </Box>
         </Box>
 

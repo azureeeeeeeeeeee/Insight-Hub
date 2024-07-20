@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .seralizers import DataSerializer, ProfileSerializer
 from data.models import Profile, Data
+import pandas as pd
+
 
 # Create your views here.
 @api_view(['GET'])
@@ -40,13 +42,17 @@ def GetAllData(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def GetData(request, pk):
-    data = Data.objects.filter(id=pk)
+    data = Data.objects.get(id=pk)
 
     if data.user != request.user:
         return Response({'message': 'what are you doing here ?'}, status=status.HTTP_401_UNAUTHORIZED)
     
-    serializer = DataSerializer(data, many=False)
-    return Response({'data': serializer.data}, status=status.HTTP_200_OK)
+    try:
+        df = pd.read_csv(data.data.path)
+        json = df.to_json(orient='records')
+    except Exception as e:
+        return Response({'message': f'Error processing CSV file: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    return Response({'data': json}, status=status.HTTP_200_OK)
 
 
 @api_view(['DELETE'])
