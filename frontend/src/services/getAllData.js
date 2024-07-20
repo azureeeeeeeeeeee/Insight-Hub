@@ -8,7 +8,6 @@ const getAllData = async () => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(res.data.data);
   return res.data.data;
 };
 
