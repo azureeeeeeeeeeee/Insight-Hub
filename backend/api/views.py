@@ -76,10 +76,6 @@ def DoughnutChart(request):
     col = data.get('column')
     json_data = data.get('data')
 
-    print(f'\n{col}\n{type(col)}\n')
-
-
-
     try:
         df = pd.DataFrame(json_data)
     except Exception as e:
