@@ -72,15 +72,20 @@ def DeleteData(request, pk):
 @permission_classes([IsAuthenticated])
 def DoughnutChart(request):
     data = request.data
+    data = data.get('data')
     col = data.get('column')
     json_data = data.get('data')
 
+    print(f'\n{col}\n{type(col)}\n')
+
+
+
     try:
-        df = pd.read_json(json_data)
+        df = pd.DataFrame(json_data)
     except Exception as e:
         return Response({'message': f'Invalid JSON data: f{str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
 
-    final_df = df.groupby(col)[col].nunique()
+    final_df = df.groupby(by=col)[col].size().reset_index(name='count')
     json = final_df.to_json(orient='records')
 
     return Response({'data':json}, status=status.HTTP_200_OK)

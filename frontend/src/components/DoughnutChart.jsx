@@ -2,15 +2,35 @@ import { Box, Heading, Text, Center, Select, Button } from "@chakra-ui/react";
 import { Chart } from "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 import { useState, useEffect } from "react";
+import getDoughnutData from "../services/chart/doughnutData";
 
 const DoughnutChart = ({ datasets }) => {
   const [cols, setCols] = useState([]);
   const [col, setCol] = useState("");
-  const [data, setData] = useState(null);
+  const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     setCols(Object.keys(datasets[0]));
   }, [datasets]);
+
+  const handleGetData = async (e) => {
+    e.preventDefault();
+
+    const res = await getDoughnutData({ data: datasets, column: col });
+    const parsedData = JSON.parse(res);
+    const labels = parsedData.map((item) => item[col]);
+    const data = parsedData.map((item) => item.count);
+
+    setChartData({
+      labels: labels,
+      datasets: [
+        {
+          label: `Count of ${col}`,
+          data: data,
+        },
+      ],
+    });
+  };
 
   return (
     <Box className="text-center mt-4">
@@ -30,14 +50,14 @@ const DoughnutChart = ({ datasets }) => {
                 {col}
               </option>
             ))}
-            {/* <option value="">column 1</option>
-            <option value="">column 2</option>
-            <option value="">column 3</option> */}
           </Select>
-          <Button colorScheme="blue">Show</Button>
+          <Button colorScheme="blue" onClick={handleGetData}>
+            Show
+          </Button>
         </Box>
       </Center>
-      <Doughnut
+      {chartData && <Doughnut data={chartData} />}
+      {/* <Doughnut
         data={{
           labels: ["RED", "BLUE", "YELLOW"],
           datasets: [
@@ -47,7 +67,7 @@ const DoughnutChart = ({ datasets }) => {
             },
           ],
         }}
-      />
+      /> */}
     </Box>
   );
 };
