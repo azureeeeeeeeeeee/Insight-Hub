@@ -22,7 +22,7 @@ const AnalyzePage = () => {
   }, []);
 
   const handleDataSubmit = async () => {
-    setData(await getData(id));
+    setData(JSON.parse(await getData(id)));
   };
 
   return (
@@ -49,17 +49,17 @@ const AnalyzePage = () => {
           </Box>
         </Box>
 
-        <LineChart />
-
-        <Box className="flex justify-around mt-14">
-          <BarChart />
-
-          <DoughnutChart />
-        </Box>
-
-        <ScatterChart />
-
-        <DescriptiveStats />
+        {data ? (
+          <>
+            (<LineChart />
+            <BarChart />
+            <DoughnutChart datasets={data} />
+            <ScatterChart />
+            <DescriptiveStats />)
+          </>
+        ) : (
+          <div>Select data first</div>
+        )}
       </Box>
     </>
   );
