@@ -5,8 +5,8 @@ import DoughnutChart from "../components/DoughnutChart";
 import ScatterChart from "../components/ScatterChart";
 import DescriptiveStats from "../components/DescriptiveStats";
 import { useState, useEffect } from "react";
-import getAllData from "../services/getAllData";
-import getData from "../services/getData";
+import getAllData from "../services/data/getAllData";
+import getData from "../services/data/getData";
 
 const AnalyzePage = () => {
   const [allData, setAllData] = useState([]);

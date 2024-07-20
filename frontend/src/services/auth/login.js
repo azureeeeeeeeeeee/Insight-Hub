@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 const login = async (data) => {
   const res = await api.post("/auth/token", data);

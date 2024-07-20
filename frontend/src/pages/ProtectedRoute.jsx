@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import checkToken from "../services/checkToken";
+import checkToken from "../services/token/checkToken";
 
 const ProtectedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);

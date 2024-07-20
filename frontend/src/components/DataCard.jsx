@@ -1,5 +1,5 @@
 import { Text, Button, Box } from "@chakra-ui/react";
-import deleteData from "../services/deleteData";
+import deleteData from "../services/data/deleteData";
 
 const DataCard = ({ data }) => {
   const handleDelete = async (e) => {

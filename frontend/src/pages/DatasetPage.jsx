@@ -1,8 +1,8 @@
 import { Heading, Text, Box, Button, Input } from "@chakra-ui/react";
-import addData from "../services/addData";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import getAllData from "../services/getAllData";
+import addData from "../services/data/addData";
+import getAllData from "../services/data/getAllData";
 
 import DataCard from "../components/DataCard";
 

@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
-import userRegister from "../services/register";
+import userRegister from "../services/auth/register";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {

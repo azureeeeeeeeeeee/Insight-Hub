@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import api from "./api";
+import api from "../api";
 
 const refresh = async () => {
   try {

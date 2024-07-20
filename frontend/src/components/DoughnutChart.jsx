@@ -5,9 +5,13 @@ import { useState, useEffect } from "react";
 
 const DoughnutChart = ({ datasets }) => {
   const [cols, setCols] = useState([]);
+  const [col, setCol] = useState("");
+  const [data, setData] = useState(null);
+
   useEffect(() => {
     setCols(Object.keys(datasets[0]));
   }, [datasets]);
+
   return (
     <Box className="text-center mt-4">
       <Heading size="lg" className="mb-4">
@@ -16,7 +20,11 @@ const DoughnutChart = ({ datasets }) => {
       <Center>
         <Box className="flex items-center gap-4">
           <Text>Count of value in </Text>
-          <Select variant="outline" width="10rem">
+          <Select
+            variant="outline"
+            width="10rem"
+            onChange={(e) => setCol(e.target.value)}
+          >
             {cols.map((col) => (
               <option key={col} value={col}>
                 {col}

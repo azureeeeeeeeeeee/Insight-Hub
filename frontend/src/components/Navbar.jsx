@@ -1,7 +1,7 @@
 import { Avatar, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { FaRegUser, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logout from "../services/logout";
+import logout from "../services/auth/logout";
 
 const Navbar = () => {
   return (

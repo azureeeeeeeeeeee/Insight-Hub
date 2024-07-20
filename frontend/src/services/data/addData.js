@@ -1,5 +1,5 @@
-import api from "./api";
-import getToken from "./getToken";
+import api from "../api";
+import getToken from "../token/getToken";
 
 const addData = async (data) => {
   const token = await getToken();
