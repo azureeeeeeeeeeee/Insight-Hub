@@ -10,6 +10,7 @@ const refresh = async () => {
     return res.data.access;
   } catch (error) {
     console.error(error);
+    return false;
   }
 };
 

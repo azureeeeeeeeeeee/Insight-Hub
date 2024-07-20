@@ -42,7 +42,10 @@ const RegisterPage = () => {
   }
 
   return (
-    <Box borderRadius="l" className="flex flex-col gap-4 w-96 mx-auto my-6">
+    <Box
+      borderRadius="l"
+      className="flex flex-col gap-4 w-96 mx-auto my-6 pt-20"
+    >
       <Heading as="h2" size="3xl">
         Insight Hub
       </Heading>
