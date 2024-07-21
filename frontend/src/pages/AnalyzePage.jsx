@@ -58,7 +58,7 @@ const AnalyzePage = () => {
             (<LineChart />
             <BarChart />
             <DoughnutChart datasets={data} />
-            <ScatterChart />
+            <ScatterChart datasets={data} />
             <DescriptiveStats />)
           </>
         ) : (
