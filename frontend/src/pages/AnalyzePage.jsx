@@ -15,7 +15,11 @@ const AnalyzePage = () => {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      setAllData(await getAllData());
+      const fetchedData = await getAllData();
+      setAllData(fetchedData);
+      if (fetchedData) {
+        setId(fetchedData[0].id);
+      }
     };
 
     fetchAllData();
