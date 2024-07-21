@@ -16,7 +16,6 @@ const DescriptiveStats = ({ datasets }) => {
     const res = await getDescriptiveStatistics({ data: datasets, col: col });
     const parsedData = JSON.parse(res);
     setData(parsedData);
-    console.log(parsedData);
   };
 
   return (

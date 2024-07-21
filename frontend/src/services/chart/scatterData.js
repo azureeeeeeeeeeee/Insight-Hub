@@ -8,7 +8,6 @@ const getScatterData = async (data) => {
     { data },
     { headers: { Authorization: `Bearer ${token}` } }
   );
-  console.log(JSON.parse(res.data.data));
   return res.data.data;
 };
 

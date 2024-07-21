@@ -27,7 +27,6 @@ const ScatterChart = ({ datasets }) => {
       [col2]: parsedData[col2][index],
     }));
 
-    console.log(dataArray);
     setChartData({
       datasets: [
         {

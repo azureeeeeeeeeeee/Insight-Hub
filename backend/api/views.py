@@ -150,3 +150,22 @@ def BarChart(request):
     return Response({'data': final_df.to_json()}, status=status.HTTP_200_OK)
 
     
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def LineChart(request):
+    data = request.data
+    json = data.get('data')
+    col = data.get('col')
+    date = data.get('date')
+
+    try:
+        df = pd.DataFrame(json)
+    except Exception as e:
+        return Response({'message': f'Invalid JSON Data: {str(e)}'})
+    
+    df[date] = pd.to_datetime(df[date], errors='coerce')
+    df[date] = df[date].dt.strftime('%Y-%m-%d')
+    
+    final_df = df.groupby(date)[col].sum().reset_index()
+
+    return Response({'data': final_df.to_json()}, status=status.HTTP_200_OK)

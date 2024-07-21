@@ -10,6 +10,7 @@ urlpatterns = [
     path('data/process/doughnut/', views.DoughnutChart, name='doughnut-chart'),
     path('data/process/scatter/', views.ScatterPlot, name='scatter-plot'),
     path('data/process/bar/', views.BarChart, name='bar-chart'),
+    path('data/process/line/', views.LineChart, name='line-chart'),
     path('data/process/descriptive/', views.GetDescriptiveStatistics, name='descriptive-statistics'),
 
     path('data/delete/<str:pk>/', views.DeleteData, name='add-data'),
