@@ -11,7 +11,20 @@ import pandas as pd
 @permission_classes([AllowAny])
 def getRoutes(request):
     routes = [
-        'GET /api/'
+        'GET /api/',
+        'GET /api/profile',
+
+        'GET /api/data/',
+        'GET /api/data/view/:<id>',
+        'POST /api/data/add/',
+
+        'POST /api/process/doughnut/',
+        'POST /api/process/scatter/',
+        'POST /api/process/bar/',
+        'POST /api/process/line/',
+        'POST /api/process/descriptive/',
+
+        'DELETE /api/data/delete/<:id>',
     ]
 
     return Response(routes)
