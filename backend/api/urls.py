@@ -3,6 +3,9 @@ from . import views
 
 urlpatterns = [
     path('', views.getRoutes, name='get-routes'),
+
+    path('profile/', views.getUser, name='get-user'),
+    
     path('data/', views.GetAllData, name='get-all-datas'),
     path('data/view/<str:pk>/', views.GetData, name='get-datas'),
     path('data/add/', views.AddData, name='add-data'),

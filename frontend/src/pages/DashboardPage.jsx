@@ -1,11 +1,33 @@
 // import React from 'react'
 import { Heading, Text, Button, ButtonGroup, Box } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import getUser from "../services/getUser";
 
 const DashboardPage = () => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await getUser();
+      if (res) {
+        setLoading(false);
+        setUser(res);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  if (loading) {
+    return <div className="mt-32">Loading. . .</div>;
+  }
+
   return (
     <>
       <Heading mt={8} size="xl">
-        Hi @User
+        Hi @{user.username}
       </Heading>
 
       <Box mt={8}>
@@ -37,9 +59,15 @@ const DashboardPage = () => {
 
       <Text mt={8}>What do you want to do today ?</Text>
       <ButtonGroup mt={4}>
-        <Button colorScheme="blue">Add new Data</Button>
-        <Button colorScheme="yellow">Analyze your data</Button>
-        <Button colorScheme="green">Create a report</Button>
+        <Link to="/datasets">
+          <Button colorScheme="blue">Add new Data</Button>
+        </Link>
+        <Link to="/analyze">
+          <Button colorScheme="yellow">Analyze your data</Button>
+        </Link>
+        <Link>
+          <Button colorScheme="green">Create a report</Button>
+        </Link>
       </ButtonGroup>
     </>
   );
