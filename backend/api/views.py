@@ -65,6 +65,27 @@ def DeleteData(request, pk):
     data.delete()
 
     return Response({'message': 'data deleted'}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+def GetDescriptiveStatistics(request):
+    data = request.data
+
+    col = data.get('col')
+    data = data.get('data')
+
+    print(f'\n{data}\n')
+    print(f'\n{col}\n')
+
+    try:
+        df = pd.DataFrame(data)
+    except Exception as e:
+        return Response({'message': f'Invalid JSON data: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    desc_df = df[col].describe()
+    json = desc_df.to_json()
+
+    return Response({'data': json}, status=status.HTTP_200_OK)
     
 
 @api_view(['POST'])
