@@ -123,4 +123,30 @@ def ScatterPlot(request):
 
     return Response({'data': json}, status=status.HTTP_200_OK)
 
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def BarChart(request):
+    data = request.data
+    json = data.get('data')
+    base_col = data.get('base_col')
+    group_col = data.get('group_col')
+    value = data.get('value')
+
+    try:
+        df = pd.DataFrame(json)
+    except Exception as e:
+        return Response({'message': f'Invalid JSON Data : {str(e)}'})
+
+    if value == 'count':
+        final_df = df.groupby(by=group_col)[base_col].count().reset_index()
+        final_df.columns = [group_col, value]
+    elif value == 'mean':
+        final_df = df.groupby(by=group_col)[base_col].mean().reset_index()
+        final_df.columns = [group_col, value]
+    else:
+        return Response({'message': 'Invalid value parameter. Use "mean" or "count"'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    return Response({'data': final_df.to_json()}, status=status.HTTP_200_OK)
+
     
