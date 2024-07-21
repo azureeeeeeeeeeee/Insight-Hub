@@ -55,11 +55,11 @@ const AnalyzePage = () => {
 
         {data ? (
           <>
-            (<LineChart />
+            <LineChart />
             <BarChart />
             <DoughnutChart datasets={data} />
             <ScatterChart datasets={data} />
-            <DescriptiveStats />)
+            <DescriptiveStats datasets={data} />
           </>
         ) : (
           <div>Select data first</div>

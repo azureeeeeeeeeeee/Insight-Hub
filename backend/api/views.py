@@ -74,9 +74,6 @@ def GetDescriptiveStatistics(request):
     col = data.get('col')
     data = data.get('data')
 
-    print(f'\n{data}\n')
-    print(f'\n{col}\n')
-
     try:
         df = pd.DataFrame(data)
     except Exception as e:
