@@ -8,6 +8,7 @@ urlpatterns = [
     path('data/add/', views.AddData, name='add-data'),
 
     path('data/process/doughnut/', views.DoughnutChart, name='doughnut-chart'),
+    path('data/process/scatter/', views.ScatterPlot, name='scatter-plot'),
 
     path('data/delete/<str:pk>/', views.DeleteData, name='add-data'),
 ]

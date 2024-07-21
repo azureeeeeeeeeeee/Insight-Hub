@@ -79,11 +79,29 @@ def DoughnutChart(request):
     try:
         df = pd.DataFrame(json_data)
     except Exception as e:
-        return Response({'message': f'Invalid JSON data: f{str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': f'Invalid JSON data: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
 
     final_df = df.groupby(by=col)[col].size().reset_index(name='count')
     json = final_df.to_json(orient='records')
 
     return Response({'data':json}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def ScatterPlot(request):
+    data = request.data.get('data')
+    col1, col2 = request.data.get('col1'), request.data.get('col2')
+
+    try:
+        df = pd.DataFrame(data)
+    except Exception as e:
+        return Response({'message': f'Invalid JSON data {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+    final_df = df[[col1, col2]]
+    json = final_df.to_json(orient='records')
+
+    return Response({'data': json}, status=status.HTTP_200_OK)
 
     
