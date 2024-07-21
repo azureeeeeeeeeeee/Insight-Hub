@@ -6,7 +6,6 @@ from .seralizers import DataSerializer, ProfileSerializer
 from data.models import Profile, Data
 import pandas as pd
 
-
 # Create your views here.
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -91,7 +90,9 @@ def DoughnutChart(request):
 @permission_classes([IsAuthenticated])
 def ScatterPlot(request):
     data = request.data.get('data')
-    col1, col2 = request.data.get('col1'), request.data.get('col2')
+    col1 = data.get('col1')
+    col2 = data.get('col2')
+    data = data.get('data')
 
     try:
         df = pd.DataFrame(data)
@@ -100,7 +101,7 @@ def ScatterPlot(request):
     
 
     final_df = df[[col1, col2]]
-    json = final_df.to_json(orient='records')
+    json = final_df.to_json()
 
     return Response({'data': json}, status=status.HTTP_200_OK)
 
