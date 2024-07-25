@@ -17,8 +17,6 @@ A Fullstack web app using Python Django + React JS. Created to learn the full im
 * Tailwind CSS (Styling)
 * Pandas (Data Processing)
 * ChartJS (Data Visualization)
-
-
 ## Installation
 
 Clone this repository using
@@ -37,7 +35,7 @@ setup.bat
 Input the credential for the superuser in the backend terminal
 
 Or, you can do it manually with the steps below
-## Backend Setup
+## Manual Backend Setup
 
 Go to the backend folder **from root folder** using
 ```
@@ -75,7 +73,7 @@ Run the Django Server using
 ```
 python manage.py runserver
 ```
-## Frontend Setup
+## Manual Frontend Setup
 Go to the frontend folder **from root folder** using
 ```
 cd frontend
