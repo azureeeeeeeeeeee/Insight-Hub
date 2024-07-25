@@ -25,7 +25,17 @@ Clone this repository using
   git clone https://github.com/azureeeeeeeeeeee/Insight-Hub.git
 ```
     
-## Backend Setup
+## Setup & Run
+
+Automate the setup and run the app (cmd) with
+```
+setup.bat
+```
+
+Input the credential for the superuser in the backend terminal
+
+Or, you can do it manually with the steps below
+## Manual Backend Setup
 
 Go to the backend folder **from root folder** using
 ```
@@ -63,7 +73,7 @@ Run the Django Server using
 ```
 python manage.py runserver
 ```
-## Frontend Setup
+## Manual Frontend Setup
 Go to the frontend folder **from root folder** using
 ```
 cd frontend
@@ -78,8 +88,15 @@ Run the frontend using
 ```
 npm run dev
 ```
-## Usage
+## Run only
 
+If you already setup both the backend and frontend and just want to run the app, open cmd and run
+```
+run.bat
+```
+
+
+## Usage
 To access the web, go to
 ```
 localhost:3000
@@ -90,4 +107,4 @@ To access the backend (database & routes), go to
 127.0.0.1:8000/admin/
 127.0.0.1:8000/api/
 ```
-To access the database, use super user.
+To access the database, use superuser.
