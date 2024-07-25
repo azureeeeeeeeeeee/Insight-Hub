@@ -17,6 +17,8 @@ A Fullstack web app using Python Django + React JS. Created to learn the full im
 * Tailwind CSS (Styling)
 * Pandas (Data Processing)
 * ChartJS (Data Visualization)
+
+
 ## Installation
 
 Clone this repository using
@@ -25,6 +27,16 @@ Clone this repository using
   git clone https://github.com/azureeeeeeeeeeee/Insight-Hub.git
 ```
     
+## Setup & Run
+
+Automate the setup and run the app (cmd) with
+```
+setup.bat
+```
+
+Input the credential for the superuser in the backend terminal
+
+Or, you can do it manually with the steps below
 ## Backend Setup
 
 Go to the backend folder **from root folder** using
@@ -78,8 +90,15 @@ Run the frontend using
 ```
 npm run dev
 ```
-## Usage
+## Run only
 
+If you already setup both the backend and frontend and just want to run the app, open cmd and run
+```
+run.bat
+```
+
+
+## Usage
 To access the web, go to
 ```
 localhost:3000
@@ -90,4 +109,4 @@ To access the backend (database & routes), go to
 127.0.0.1:8000/admin/
 127.0.0.1:8000/api/
 ```
-To access the database, use super user.
+To access the database, use superuser.
