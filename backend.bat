@@ -14,5 +14,8 @@ python manage.py migrate
 :: creating super user
 python manage.py createsuperuser
 
+:: clearing the terminal
+cls
+
 :: run the backend server
 python manage.py runserver
